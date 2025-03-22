@@ -1,0 +1,61 @@
+# Environment files
+.env
+.env.local
+.env.production
+
+# Dependency directories
+node_modules/
+vendor/
+
+# Build artifacts
+dist/
+build/
+*.class
+*.jar
+
+# Log files
+*.log
+logs/
+
+# Local development files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temporary files
+.DS_Store
+Thumbs.db
+*.tmp
+temp/
+
+# Database files
+*.db
+*.sqlite
+*.dump
+
+# Uploaded files
+uploads/
+media/
+
+# Configuration files
+config/local.yml
+config/credentials.json
+
+# Test and coverage reports
+coverage/
+*.coverage
+test-results/
+
+# IDE-specific files
+.idea/
+.vscode/
+*.iml
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
