@@ -1,3 +1,4 @@
+const User=require("../models/user-model")
 const home=async(req,res)=>{
     try {
         res.status(200).send("Hello sourabh")
@@ -9,9 +10,22 @@ const home=async(req,res)=>{
 
 const register= async(req,res)=>{
     try {
-        res.status(200).send({msg:req.body})
+        const { username, email, phone, password } = req.body;
+
+        // Check if email already exists
+        const userExist = await User.findOne({ email });
+        if (userExist) {
+            return res.status(400).json({ msg: "Email already exists" }); // Use return to stop execution
+        }
+
+        // Create new user
+        const newUser = await User.create({ username, email, phone, password });
+
+        // Send success response
+        return res.status(201).json({ msg: "User registered successfully", data: newUser });
     } catch (error) {
-        res.status(400).send({msg:"page is not found"})
+        console.log("Register Error:", error); // Log the error for debugging
+        res.status(500).json({ msg: "Internal server error", error: error.message });
     }
 }
 module.exports={home, register}
