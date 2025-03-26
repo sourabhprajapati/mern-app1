@@ -12,7 +12,7 @@ const home = async (req, res) => {
     }
 }
 
-const register = async (req, res) => {
+const register = async (req, res,next) => {
     try {
         const { username, email, phone, password } = req.body;
 
@@ -34,8 +34,9 @@ const register = async (req, res) => {
         // Send success response
         return res.status(201).json({ msg: "User registered successfully", token: await newUser.generateToken(), userID: newUser._id.toString() });
     } catch (error) {
-        console.error("Register Error:", error);
-        res.status(500).json({ msg: "Internal server error", error: error.message });
+        // console.error("Register Error:", error);
+        // res.status(500).json({ msg: "Internal server error", error: error.message });
+        next(error)
     }
 }
 
