@@ -33,6 +33,17 @@ try {
     next(error)
 }
 }
+const updateUserById=async(req,res)=>{
+    try {
+        const id=req.params.id;
+        const updatedUserData=req.body;
+
+        const updatedUser=await User.updatedOne({_id:id},{$set:updatedUserData});
+        return res.status(200).json(updatedUser)
+    } catch (error) {
+        next(error)
+    }
+}
 
 const getUserById=async(req,res)=>{
     try {
@@ -44,4 +55,13 @@ const getUserById=async(req,res)=>{
         next(error)
     }
 }
-module.exports={getAllUsers,getAllContacts,deleteUserById, getUserById};
+const deleteContactById=async(req,res)=>{
+    try {
+       const id=req.params.id;
+       await Contact.deleteOne({_id:id})
+       return res.status(200).json({message:"Contact Delected Sucess"})
+    } catch (error) {
+        next(error)
+    }
+    }
+module.exports={getAllUsers,getAllContacts,deleteUserById, getUserById,updateUserById,deleteContactById};
